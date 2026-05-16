@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart RGB Downlight · ไฟดาวน์ไลท์อัจฉริยะ · SMH by Ikkyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f4f8fd;
+      --surface2: #eaf3fc;
+      --border: rgba(55,181,255,0.2);
+      --blue: #37b5ff;
+      --blue-light: #0090e0;
+      --blue-dim: rgba(55,181,255,0.1);
+      --text: #0f1f33;
+      --text-dim: #5a7a99;
+      --accent: #37b5ff;
+      --green: #16a34a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sarabun', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .topbar-back:hover { color: var(--blue); }
+    .topbar-back svg { width: 18px; height: 18px; }
+    .topbar-brand {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: .04em;
+    }
+    .topbar-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #00b900;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .topbar-line:hover { opacity: .85; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 48px 24px 36px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .badge-cat  { background: var(--blue-dim); color: var(--blue-light); border: 1px solid var(--blue); }
+    .badge-type { background: rgba(55,181,255,.1); color: var(--blue); border: 1px solid rgba(55,181,255,.3); }
+    .badge-hot  { background: rgba(255,100,50,.1); color: #e05000; border: 1px solid rgba(255,100,50,.3); }
+
+    .hero h1 {
+      font-family: 'Kanit', sans-serif;
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* price block */
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .price-main {
+      font-family: 'Kanit', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .price-label {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    .price-label strong { display: block; color: var(--text); font-weight: 500; }
+
+    /* free badge */
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22,163,74,.1);
+      border: 1px solid rgba(22,163,74,.3);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #00b900;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(0,185,0,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,185,0,.4); }
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .video-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(55,181,255,.2);
+      background: #000;
+    }
+    .video-wrapper::before {
+      content: '';
+      display: block;
+      padding-top: 177.78%; /* 9:16 */
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-caption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+
+    /* ── FEATURES ── */
+    .features-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 400px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    .feat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border-color .2s, transform .2s;
+    }
+    .feat-card:hover { border-color: rgba(55,181,255,.4); transform: translateY(-2px); }
+    .feat-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+    .feat-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .feat-text span { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+
+    /* ── PRICE TABLE ── */
+    .price-table-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .price-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 400px) {
+      .price-cards { grid-template-columns: 1fr; }
+    }
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+    .price-card.highlight {
+      border-color: var(--blue);
+      background: var(--blue-dim);
+    }
+    .price-card-label {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .price-card-name {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .price-card-price {
+      font-family: 'Kanit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+    .price-card-note {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ── USE CASES ── */
+    .usecases-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .usecase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .usecase-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+    }
+    .usecase-item .cmd {
+      font-family: 'Kanit', sans-serif;
+      color: var(--blue-light);
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .usecase-item .desc {
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* ── SPECS ── */
+    .specs-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .specs-table {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .spec-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      width: 44%;
+      padding: 14px 16px;
+      color: var(--text-dim);
+      font-weight: 500;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+    }
+    .spec-val {
+      padding: 14px 16px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* ── GUARANTEE BAR ── */
+    .guarantee-bar {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .guarantee-inner {
+      background: var(--blue-dim);
+      border: 1px solid rgba(55,181,255,.3);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .guarantee-icon { font-size: 32px; }
+    .guarantee-text strong { display: block; font-family: 'Kanit', sans-serif; font-size: 16px; color: var(--blue-light); }
+    .guarantee-text span { font-size: 13px; color: var(--text-dim); }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .bottom-cta p { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; }
+    .btn-line-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #00b900;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-family: 'Kanit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 32px rgba(0,185,0,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-line-big:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,185,0,.45); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    .divider { height: 1px; background: var(--border); margin: 0 24px 48px; max-width: calc(680px - 48px); margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#light">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      กลับหน้าหลัก
+    </a>
+    <span class="topbar-brand">SMH by Ikkyu</span>
+    <a class="topbar-line" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ" target="_blank" rel="noopener">
+      💬 Line
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge-row">
+      <span class="badge badge-cat">ไฟส่องสว่าง</span>
+      <span class="badge badge-type">RGB 16 ล้านสี</span>
+      <span class="badge badge-hot">⭐ ขายดี</span>
+    </div>
+    <h1>Smart RGB Downlight<br/><span>ไฟดาวน์ไลท์อัจฉริยะ</span></h1>
+    <p class="hero-sub">
+      แบบฝังฝ้า RGB 16 ล้านเฉดสี · สั่งด้วยเสียงหรือแอป<br/>
+      ไฟเปลี่ยนตามจังหวะเพลง · รวมติดตั้ง + ประกัน 1 ปี
+    </p>
+
+    <div class="free-badge">
+      ✅ RGB 16 ล้านเฉดสี · ปรับความสว่างได้อิสระ
+    </div>
+
+    <div class="price-block">
+      <span class="price-main">฿1,250</span>
+      <div class="price-label">
+        <strong>ฝ้าแผ่น รวมติดตั้ง</strong>
+        ฝ้าฉาบ ฿1,560 · ประกัน 1 ปี
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ%20฿1%2C560.-" target="_blank" rel="noopener">
+        💬 สอบถาม Line
+      </a>
+      <a class="btn-secondary" href="tel:0924501138">
+        📞 092-450-1138
+      </a>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <p class="section-label">ดูการใช้งานจริง</p>
+    <h2 class="video-title">วิดีโอการใช้งาน</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/UYwa0BhP_04"
+        title="Smart RGB Downlight ไฟดาวน์ไลท์อัจฉริยะ - SMH by Ikkyu"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="video-caption">กดเพื่อดูวิดีโอสาธิต · Smart RGB Downlight สั่งสีและความสว่างผ่านเสียง</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRICE TABLE -->
+  <section class="price-table-section">
+    <p class="section-label">ตัวเลือกราคา</p>
+    <h2 class="video-title" style="margin-bottom:20px;">เลือกตามประเภทฝ้า</h2>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-card-label">สำหรับ</div>
+        <div class="price-card-name">ฝ้าแผ่น</div>
+        <div class="price-card-price">฿1,250</div>
+        <div class="price-card-note">ต่อดวง รวมติดตั้ง</div>
+      </div>
+      <div class="price-card highlight">
+        <div class="price-card-label">สำหรับ</div>
+        <div class="price-card-name">ฝ้าฉาบ</div>
+        <div class="price-card-price">฿1,560</div>
+        <div class="price-card-note">ต่อดวง รวมติดตั้ง</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <p class="section-label">คุณสมบัติ</p>
+    <h2 class="video-title" style="margin-bottom:20px;">ฟีเจอร์ครบ ใช้งานง่าย</h2>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🎨</div>
+        <div class="feat-text">
+          <strong>RGB 16 ล้านเฉดสี</strong>
+          <span>ปรับสีได้อิสระ เซ็ตบรรยากาศห้องได้ตามใจ</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🗣️</div>
+        <div class="feat-text">
+          <strong>สั่งด้วยเสียง</strong>
+          <span>รองรับ Alexa และ Google Assistant</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div class="feat-text">
+          <strong>สั่งผ่านแอป</strong>
+          <span>ปรับสี ความสว่าง เปิด-ปิด จากมือถือได้ทุกที่</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🎶</div>
+        <div class="feat-text">
+          <strong>ไฟเต้นตามเพลง</strong>
+          <span>ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศได้เลย</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⏰</div>
+        <div class="feat-text">
+          <strong>ตั้งเวลาอัตโนมัติ</strong>
+          <span>กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🤖</div>
+        <div class="feat-text">
+          <strong>เปิดอัตโนมัติ</strong>
+          <span>ตั้งให้ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- USE CASES -->
+  <section class="usecases-section">
+    <p class="section-label">ตัวอย่างการใช้งาน</p>
+    <h2 class="video-title" style="margin-bottom:20px;">ใช้งานได้แบบไหนบ้าง?</h2>
+    <div class="usecase-list">
+      <div class="usecase-item">
+        <span class="cmd">🗣️ สั่งด้วยเสียง</span>
+        <span class="desc">"Alexa, เปิดไฟห้องนอนสีฟ้า" ไม่ต้องลุกจากเตียง</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🎶 Music Mode</span>
+        <span class="desc">ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศปาร์ตี้</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🌅 Wake Up Scene</span>
+        <span class="desc">ไฟค่อยๆ สว่างขึ้นตอนเช้า ตื่นนอนสบายตา</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🎬 Movie Mode</span>
+        <span class="desc">หรี่ไฟลงอัตโนมัติเมื่อเปิดทีวี บรรยากาศโรงหนัง</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🏠 Scene ทั้งบ้าน</span>
+        <span class="desc">กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SPECS -->
+  <section class="specs-section">
+    <p class="section-label">ข้อมูลจำเพาะ</p>
+    <h2 class="video-title" style="margin-bottom:20px;">รายละเอียดสินค้า</h2>
+    <div class="specs-table">
+      <div class="spec-row">
+        <div class="spec-key">สินค้า</div>
+        <div class="spec-val">Smart RGB Downlight ไฟดาวน์ไลท์อัจฉริยะ</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">ขนาด / กำลังไฟ</div>
+        <div class="spec-val">12W / 18W (มีให้เลือก)</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">สี</div>
+        <div class="spec-val">RGB 16 ล้านเฉดสี + ปรับความสว่างได้อิสระ</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">การเชื่อมต่อ</div>
+        <div class="spec-val">Wi-Fi 2.4GHz</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">การสั่งงาน</div>
+        <div class="spec-val">แอป / เสียง Alexa & Google / ตั้งเวลา</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">รองรับ</div>
+        <div class="spec-val">Alexa · Google Assistant · SmartLife App</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">ประเภทฝ้า</div>
+        <div class="spec-val">ฝ้าแผ่น ฿1,250 · ฝ้าฉาบ ฿1,560 (ต่อดวง)</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">ประกัน</div>
+        <div class="spec-val">1 ปี รวมค่าบริการ</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee-bar">
+    <div class="guarantee-inner">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <strong>รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
+        <span>ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2>สนใจ? สอบถามได้เลยครับ</h2>
+    <p>ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
+    <a class="btn-line-big" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ%20฿1%2C560.-" target="_blank" rel="noopener">
+      💬 Line: @255cozlc
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    SMH by Ikkyu · บริการ Smart Home ครบวงจร<br/>
+    <a href="https://lin.ee/9AcwOJj">Line: @255cozlc</a> · <a href="tel:0924501138">092-450-1138</a><br/>
+    รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ
+  </footer>
+
+</body>
+</html>
