@@ -287,31 +287,6 @@
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  /* LANGUAGE TOGGLE */
-  .lang-toggle {
-    flex-shrink: 0;
-    font-family: 'Prompt', sans-serif;
-    font-size: 11px; font-weight: 500;
-    display: flex; align-items: center;
-    background: var(--bg-soft);
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    gap: 0;
-  }
-  .lang-toggle span {
-    padding: 5px 10px;
-    border-radius: 20px;
-    transition: all 0.2s;
-    color: var(--text-muted);
-    user-select: none;
-  }
-  .lang-toggle span.active {
-    background: var(--accent);
-    color: #fff;
-  }
-
   @media (max-width: 700px) {
     nav { padding: 0 16px; gap: 12px; }
     .nav-links { display: none; }
@@ -623,32 +598,27 @@
 <nav>
   <a class="nav-logo" href="#">SMH <span>by Ikkyu</span></a>
   <div class="nav-links">
-    <a href="#packages" data-th="แพ็กเกจ" data-en="Packages">แพ็กเกจ</a>
-    <a href="#door" data-th="ประตู" data-en="Door Lock">ประตู</a>
-    <a href="#light" data-th="ไฟส่องสว่าง" data-en="Lighting">ไฟส่องสว่าง</a>
+    <a href="#packages">แพ็กเกจ</a><a href="#door">ประตู</a>
+    <a href="#light">ไฟส่องสว่าง</a>
     <a href="#ai">AI Hub</a>
-    <a href="#control" data-th="ควบคุมไฟฟ้า" data-en="Switch & IR">ควบคุมไฟฟ้า</a>
-    <a href="#security" data-th="ความปลอดภัย" data-en="Security">ความปลอดภัย</a>
-    <a href="#auto" data-th="อัตโนมัติ" data-en="Automation">อัตโนมัติ</a>
-    <a href="#garden" data-th="การทำสวน" data-en="Garden">การทำสวน</a>
-    <a href="#contact" data-th="ติดต่อเรา" data-en="Contact">ติดต่อเรา</a>
+    <a href="#control">ควบคุมไฟฟ้า</a>
+    <a href="#security">ความปลอดภัย</a>
+    <a href="#auto">อัตโนมัติ</a>
+    <a href="#garden">การทำสวน</a>
+    <a href="#contact">ติดต่อเรา</a>
   </div>
-  <div class="lang-toggle" id="langToggle">
-    <span id="langTH" class="active" onclick="setLang('th')">TH</span>
-    <span id="langEN" onclick="setLang('en')">EN</span>
-  </div>
-  <a href="https://lin.ee/9AcwOJj" target="_blank" class="nav-cta" data-th="💬 Line สอบถาม" data-en="💬 Line Inquiry">💬 Line สอบถาม</a>
+  <a href="https://lin.ee/9AcwOJj" target="_blank" class="nav-cta">💬 Line สอบถาม</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">SMH by Ikkyu</div>
-  <h1 data-th="บริการติดตั้ง<br><strong>Smart Home</strong><br>ครบวงจร" data-en="Complete<br><strong>Smart Home</strong><br>Installation">บริการติดตั้ง<br><strong>Smart Home</strong><br>ครบวงจร</h1>
+  <h1>บริการติดตั้ง<br><strong>Smart Home</strong><br>ครบวงจร</h1>
   <div class="accent-line"></div>
-  <p class="hero-sub" data-th="ทุกอุปกรณ์ในบ้านอยู่ในมือคุณ<br>รวมติดตั้ง + ประกัน 1 ปี ทุกรายการ" data-en="Control every device at your fingertips<br>Installation + 1-Year Warranty included">ทุกอุปกรณ์ในบ้านอยู่ในมือคุณ<br>รวมติดตั้ง + ประกัน 1 ปี ทุกรายการ</p>
+  <p class="hero-sub">ทุกอุปกรณ์ในบ้านอยู่ในมือคุณ<br>รวมติดตั้ง + ประกัน 1 ปี ทุกรายการ</p>
   <div class="hero-actions">
-    <a href="https://lin.ee/9AcwOJj" target="_blank" class="btn-primary" data-th="💬 สอบถาม Line" data-en="💬 Line Inquiry">💬 สอบถาม Line</a>
-    <a href="#door" class="btn-outline" data-th="ดูสินค้าทั้งหมด" data-en="Browse Products">ดูสินค้าทั้งหมด</a>
+    <a href="https://lin.ee/9AcwOJj" target="_blank" class="btn-primary">💬 สอบถาม Line</a>
+    <a href="#door" class="btn-outline">ดูสินค้าทั้งหมด</a>
   </div>
 </div>
 
@@ -657,19 +627,19 @@
   <div class="trust-grid">
     <div class="trust-item fade-in">
       <div class="trust-num">10+</div>
-      <div class="trust-label" data-th="หมวดหมู่สินค้า" data-en="Product Categories">หมวดหมู่สินค้า</div>
+      <div class="trust-label">หมวดหมู่สินค้า</div>
     </div>
     <div class="trust-item fade-in" style="transition-delay:.1s">
-      <div class="trust-num">1 <span data-th="ปี" data-en="Yr">ปี</span></div>
-      <div class="trust-label" data-th="ประกันทุกรายการ" data-en="Warranty on All Items">ประกันทุกรายการ</div>
+      <div class="trust-num">1 ปี</div>
+      <div class="trust-label">ประกันทุกรายการ</div>
     </div>
     <div class="trust-item fade-in" style="transition-delay:.2s">
-      <div class="trust-num" data-th="รวม" data-en="Incl.">รวม</div>
-      <div class="trust-label" data-th="ค่าติดตั้งทุกชิ้น" data-en="Installation for All">ค่าติดตั้งทุกชิ้น</div>
+      <div class="trust-num">รวม</div>
+      <div class="trust-label">ค่าติดตั้งทุกชิ้น</div>
     </div>
     <div class="trust-item fade-in" style="transition-delay:.3s">
       <div class="trust-num">24/7</div>
-      <div class="trust-label" data-th="สอบถามได้ตลอด" data-en="Always Available">สอบถามได้ตลอด</div>
+      <div class="trust-label">สอบถามได้ตลอด</div>
     </div>
   </div>
 </section>
@@ -678,9 +648,9 @@
 <section id="packages" style="background:var(--bg-soft); padding: 64px 24px;">
   <div style="max-width:960px; margin:0 auto;">
     <div class="section-header fade-in" style="text-align:center; margin-bottom:40px;">
-      <div class="section-eyebrow" data-th="แพ็กเกจ" data-en="Packages">แพ็กเกจ</div>
-      <div class="section-title" style="text-align:center;" data-th="เลือก<strong>แพ็กเกจ</strong>ที่เหมาะกับบ้านคุณ" data-en="Choose the <strong>Package</strong> That Fits Your Home">เลือก<strong>แพ็กเกจ</strong>ที่เหมาะกับบ้านคุณ</div>
-      <p class="section-desc" style="text-align:center;" data-th="รวมติดตั้ง + ประกัน 1 ปี ทุกแพ็กเกจ · ปรับเพิ่ม-ลดรายการได้" data-en="Installation + 1-Year Warranty included · Customizable items">รวมติดตั้ง + ประกัน 1 ปี ทุกแพ็กเกจ · ปรับเพิ่ม-ลดรายการได้</p>
+      <div class="section-eyebrow">แพ็กเกจ</div>
+      <div class="section-title" style="text-align:center;">เลือก<strong>แพ็กเกจ</strong>ที่เหมาะกับบ้านคุณ</div>
+      <p class="section-desc" style="text-align:center;">รวมติดตั้ง + ประกัน 1 ปี ทุกแพ็กเกจ · ปรับเพิ่ม-ลดรายการได้</p>
     </div>
     <div class="packages">
 
@@ -1178,261 +1148,6 @@ document.querySelectorAll('[data-img]').forEach(card => {
     img.alt = key;
     card.insertBefore(img, card.firstChild);
   }
-});
-<!-- LANGUAGE TOGGLE SCRIPT -->
-<script>
-// ── Translation map ──────────────────────────────────────────────
-const TRANSLATIONS = {
-  // <html lang>
-  htmlLang: { th: 'th', en: 'en' },
-
-  // Page title
-  pageTitle: { th: 'SMH by Ikkyu — Smart Home ครบวงจร', en: 'SMH by Ikkyu — Complete Smart Home Solutions' },
-
-  // Packages
-  pkgStarterBadge:  { th: 'เริ่มต้น', en: 'Starter' },
-  pkgStarterDesc:   { th: 'ความปลอดภัยเริ่มต้น เหมาะสำหรับบ้านที่อยากเริ่มต้น Smart Home ได้ทันที', en: 'Entry-level security. Perfect for homes ready to start Smart Home right away.' },
-  pkgStarterLabel:  { th: 'ราคาแพ็กเกจ', en: 'Package Price' },
-  pkgStarterSub:    { th: 'ราคาปกติ ฿8,696 (ลด 8%)', en: 'Regular ฿8,696 (Save 8%)' },
-  pkgStarterUnit:   { th: 'รวม 4 รายการ · ติดตั้งครั้งเดียวจบ', en: '4 items · One-time installation' },
-
-  pkgPopularBadge:  { th: '★ ยอดนิยม', en: '★ Most Popular' },
-  pkgPopularName:   { th: 'บ้านสมาร์ท', en: 'Smart Home' },
-  pkgPopularDesc:   { th: 'ครอบคลุมทุกระบบหลัก ไฟ กล้อง ประตู ครบทั้งหน้าและหลังบ้าน คุ้มค่าที่สุด', en: 'Full coverage: lights, cameras, and doors for front & back. Best value.' },
-  pkgPopularLabel:  { th: 'ราคาแพ็กเกจ', en: 'Package Price' },
-  pkgPopularSub:    { th: 'ราคาปกติ ฿20,591 (ลด 13%)', en: 'Regular ฿20,591 (Save 13%)' },
-  pkgPopularUnit:   { th: 'รวม 8 รายการ · ประหยัดค่าแรงติดตั้งครั้งเดียว', en: '8 items · Save on single installation' },
-
-  pkgUltimateBadge: { th: 'ครบครัน', en: 'Ultimate' },
-  pkgUltimateName:  { th: 'บ้านสมาร์ทแมกซ์', en: 'Smart Home Max' },
-  pkgUltimateDesc:  { th: 'ครบทุกระบบ ผ้าม่าน ประตูรั้ว วาล์วน้ำ สมาร์ทโฮมเต็มรูปแบบ', en: 'Complete system: curtains, gate, water valve — the full Smart Home experience.' },
-  pkgUltimateLabel: { th: 'ราคาแพ็กเกจ', en: 'Package Price' },
-  pkgUltimateSub:   { th: 'ราคาปกติ ฿31,985 (ลด 16%)', en: 'Regular ฿31,985 (Save 16%)' },
-  pkgUltimateUnit:  { th: 'รวม 13 รายการ · ครบทุกระบบ', en: '13 items · Full system' },
-
-  // CTA buttons in packages
-  pkgCTA: { th: 'สอบถามแพ็กเกจนี้', en: 'Inquire About This Package' },
-
-  // Section headers
-  sectionDoorEye:   { th: 'ประตู', en: 'Door Lock' },
-  sectionDoorTitle: { th: 'Digital Door Lock · <strong>ประตูอัจฉริยะ</strong>', en: 'Digital Door Lock · <strong>Smart Door Lock</strong>' },
-  sectionDoorDesc:  { th: 'ปลดล็อคด้วยลายนิ้วมือ รหัส บัตร หรือกุญแจสำรอง · รวมติดตั้ง + ประกัน 1 ปี', en: 'Unlock with fingerprint, PIN, card, or backup key · Installation + 1-Year Warranty' },
-
-  sectionLightEye:   { th: 'ไฟส่องสว่าง', en: 'Lighting' },
-  sectionLightTitle: { th: '<strong>ไฟอัจฉริยะ</strong> ทุกรูปแบบ', en: 'All Types of <strong>Smart Lighting</strong>' },
-  sectionLightDesc:  { th: 'สั่งผ่านเสียง แอป หรือตั้งเวลาอัตโนมัติ · RGB 16 ล้านเฉดสี', en: 'Voice control, app, or scheduled automation · 16M RGB colours' },
-
-  sectionAiEye:   { th: 'AI Hub', en: 'AI Hub' },
-  sectionAiTitle: { th: '<strong>ควบคุมด้วยเสียง</strong>', en: '<strong>Voice Control</strong>' },
-  sectionAiDesc:  { th: 'สั่งทุกอุปกรณ์ในบ้านด้วยเสียง ไม่ต้องหยิบโทรศัพท์', en: 'Command every device by voice — no phone needed' },
-
-  sectionCtrlEye:   { th: 'ควบคุมเครื่องใช้ไฟฟ้า', en: 'Appliance Control' },
-  sectionCtrlTitle: { th: '<strong>Smart Switch & IR Remote</strong>', en: '<strong>Smart Switch & IR Remote</strong>' },
-  sectionCtrlDesc:  { th: 'สวิตช์และรีโมทอัจฉริยะ สั่งผ่านแอป เสียง หรือตั้งเวลาอัตโนมัติ', en: 'Smart switch & remote — app, voice, or scheduled automation' },
-
-  sectionSecEye:   { th: 'ความปลอดภัย', en: 'Security' },
-  sectionSecTitle: { th: '<strong>Smart CCTV</strong> กล้องวงจรปิดอัจฉริยะ', en: '<strong>Smart CCTV</strong> Intelligent Security Camera' },
-  sectionSecDesc:  { th: 'หมุนได้ 360° โหมดกลางวัน-กลางคืน พูดโต้ตอบได้สองทาง ดูสดผ่านแอปเรียลไทม์ · เดินท่อฟรี 5 เมตรแรก', en: '360° rotation, day/night mode, two-way audio, real-time live view · First 5m conduit free' },
-
-  sectionAutoEye:   { th: 'อัตโนมัติ', en: 'Automation' },
-  sectionAutoTitle: { th: '<strong>ผ้าม่าน & ประตูรั้ว</strong> อัจฉริยะ', en: '<strong>Smart Curtain & Gate</strong>' },
-  sectionAutoDesc:  { th: 'สั่งเปิด-ปิดอัตโนมัติ ตั้งเวลา หรือสั่งผ่านเสียงได้เลย', en: 'Auto open/close, scheduled, or voice-controlled' },
-
-  sectionGardenEye:   { th: 'การทำสวน', en: 'Garden' },
-  sectionGardenTitle: { th: '<strong>วาล์วน้ำอัจฉริยะ</strong>', en: '<strong>Smart Water Valve</strong>' },
-  sectionGardenDesc:  { th: 'ระบบรดน้ำอัตโนมัติ พลังงานโซลาร์เซลล์ ตรวจจับฝนตก แยกโซนได้', en: 'Auto irrigation system, solar-powered, rain detection, multi-zone support' },
-
-  sectionContactEye:   { th: 'ติดต่อเรา', en: 'Contact' },
-  sectionContactTitle: { th: 'สนใจ? <strong>ปรึกษาฟรี</strong>', en: 'Interested? <strong>Free Consultation</strong>' },
-  sectionContactDesc:  { th: 'ทีมงานพร้อมแนะนำและออกแบบระบบให้เหมาะกับบ้านคุณโดยเฉพาะ', en: 'Our team is ready to advise and design a system tailored to your home.' },
-
-  // Contact box
-  contactH3:    { th: 'ติดต่อเรา', en: 'Get in Touch' },
-  contactP:     { th: 'สอบถามราคา นัดสำรวจ หรือปรึกษาระบบ<br>ตอบไวทุกช่องทาง', en: 'Pricing, site survey, or system advice<br>Quick response on all channels' },
-  contactLine:  { th: '💬 Line: @SMHbyIkkyu', en: '💬 Line: @SMHbyIkkyu' },
-  contactTel:   { th: '📞 โทร: 062-998-6335', en: '📞 Call: 062-998-6335' },
-
-  // Footer
-  footerText: { th: '© 2025 SMH by Ikkyu · บริการติดตั้ง Smart Home ครบวงจร<br>เชียงใหม่ และปริมณฑล · <a href="https://lin.ee/9AcwOJj" target="_blank">Line สอบถาม</a>', en: '© 2025 SMH by Ikkyu · Complete Smart Home Installation Service<br>Chiang Mai & Surrounding Areas · <a href="https://lin.ee/9AcwOJj" target="_blank">Line Inquiry</a>' },
-
-  // Product names & descs (key ones)
-  doorSwingTag:   { th: 'บานสวิง', en: 'Swing Door' },
-  doorSwingName:  { th: 'ประตูอัจฉริยะ แบบบานสวิง', en: 'Smart Door Lock – Swing Type' },
-  doorSwingDesc:  { th: 'เหมาะสำหรับประตูไม้ / ไม้อัด บานสวิงทั่วไป ติดตั้งง่าย ใช้งานได้ทันที', en: 'Ideal for wood/plywood swing doors. Easy to install, ready to use.' },
-  doorSwingNote:  { th: 'รวมติดตั้ง / ประกัน 1 ปี', en: 'Installation included / 1-Year Warranty' },
-
-  doorSlideTag:   { th: 'บานเลื่อน', en: 'Sliding Door' },
-  doorSlideName:  { th: 'ประตูอัจฉริยะ แบบบานเลื่อน', en: 'Smart Door Lock – Sliding Type' },
-  doorSlideDesc:  { th: 'ติดใส้กุญแจเดิม เหมาะสำหรับประตูกระจกบานเลื่อน ไม่ต้องเจาะประตูใหม่', en: 'Fits existing lock cylinder. Ideal for sliding glass doors — no new holes needed.' },
-
-  downlightName:  { th: 'ไฟดาวน์ไลท์อัจฉริยะ', en: 'Smart RGB Downlight' },
-  downlightDesc:  { th: 'แบบฝังฝ้า RGB 16 ล้านเฉดสี ขนาด 12W / 18W มีให้เลือกสองแบบ', en: 'Recessed ceiling, 16M RGB colours, 12W / 18W, two sizes available' },
-  downlightNote:  { th: 'ฝ้าฉาบ / ฝ้าแผ่น · รวมติดตั้ง / ประกัน 1 ปี', en: 'Plastered / Panel ceiling · Installation incl. / 1-Yr Warranty' },
-
-  bulbName:   { th: 'หลอดไฟอัจฉริยะ', en: 'Smart Light Bulb' },
-  bulbDesc:   { th: 'แบบหลอด RGB 16 ล้านเฉดสี ขนาด 10W ใส่แทนหลอดทั่วไปได้เลย', en: 'Bulb type, 16M RGB colours, 10W — direct replacement for any standard bulb.' },
-
-  alexaName:  { th: 'AI รับคำสั่งเสียงอัจฉริยะ', en: 'AI Smart Voice Assistant' },
-  alexaDesc:  { th: 'ลำโพง + AI Alexa ใช้เป็นลำโพงทีวี / ลำโพงบลูทูธได้ด้วย ✅ ฟรีค่าแรงติดตั้ง Apple TV', en: 'Speaker + Alexa AI. Works as TV speaker / Bluetooth speaker. ✅ Free Apple TV setup.' },
-
-  switchName: { th: 'สวิตช์ไฟอัจฉริยะ', en: 'Smart Light Switch' },
-  switchDesc: { th: 'แบบติดผนัง / บล็อกลอย มีให้เลือก 1–4 ปุ่ม ระบบสัมผัส', en: 'Wall-mounted / floating block, 1–4 button options, touch control' },
-  switchNote: { th: 'รวมติดตั้ง / ประกัน 1 ปี', en: 'Installation incl. / 1-Yr Warranty' },
-
-  irName:   { th: 'รีโมทอัจฉริยะ', en: 'Smart IR Remote' },
-  irDesc:   { th: 'ใช้ควบคู่หรือแทนรีโมทเดิม เรียนค่าจากรีโมทเดิมได้เลย ขนาดเล็ก R6.8 × 2', en: 'Works alongside or replaces existing remotes. Learns from originals. Compact R6.8×2.' },
-
-  cctv1Tag:  { th: '1 เลนส์', en: '1 Lens' },
-  cctv1Name: { th: 'กล้องวงจรปิดอัจฉริยะ 1 เลนส์', en: 'Smart CCTV 1 Lens' },
-  cctv1Desc: { th: 'แบบติดผนัง / บล็อกลอย หมุนได้ 360° หน่วยความจำ 64GB', en: 'Wall-mount / floating block, 360° rotation, 64GB storage' },
-  cctv1Note: { th: 'เดินท่อ (ฟรี 5ม.แรก) / ไม่เดินท่อ · ประกัน 1 ปี', en: 'Conduit (first 5m free) / No conduit · 1-Yr Warranty' },
-
-  cctv2Tag:  { th: '2 เลนส์', en: '2 Lens' },
-  cctv2Name: { th: 'กล้องวงจรปิดอัจฉริยะ 2 เลนส์', en: 'Smart CCTV 2 Lens' },
-  cctv2Desc: { th: 'แบบติดผนัง / บล็อกลอย หมุนได้ 360° สองเลนส์ มุมมองครอบคลุมกว่า', en: 'Wall-mount / floating block, 360° rotation, dual lens for wider coverage' },
-
-  curtainName: { th: 'ผ้าม่านอัจฉริยะ', en: 'Smart Curtain' },
-  curtainDesc: { th: 'ใช้กับราวผ้าม่านแบบกลม เสียงเงียบ 25 dB ไม่รบกวนการนอน', en: 'Fits round curtain rail, ultra-quiet 25 dB — won\'t disturb your sleep.' },
-  curtainNote: { th: 'รวมติดตั้ง / ประกัน 1 ปี', en: 'Installation incl. / 1-Yr Warranty' },
-
-  gateName: { th: 'ประตูรั้วอัจฉริยะ', en: 'Smart Gate' },
-  gateDesc: { th: 'ใช้ควบคู่หรือแทนรีโมทเดิม เปิด-ปิดมอเตอร์ประตูผ่านแอป หรือตั้งอัตโนมัติ', en: 'Use with or replace existing remote. Open/close gate motor via app or auto schedule.' },
-
-  faucetName: { th: 'วาล์วน้ำอัจฉริยะ', en: 'Smart Water Valve' },
-  faucetDesc: { th: 'ระบบรดน้ำอัตโนมัติ พลังงานโซลาร์เซลล์ ตรวจจับฝนตก แยกโซนได้ ขนาด 3/4″', en: 'Auto irrigation, solar-powered, rain detection, multi-zone, 3/4″ size.' },
-
-  // Common button text
-  btnAsk:    { th: 'สอบถาม', en: 'Inquire' },
-  btnDetail: { th: 'ดูรายละเอียด', en: 'View Details' },
-  btnNote:   { th: 'รวมติดตั้ง / ประกัน 1 ปี', en: 'Installation incl. / 1-Yr Warranty' },
-  perPoint:  { th: '/ จุด', en: '/ point' },
-};
-
-// ── Selectors map: CSS selector → translation key(s) ────────────
-// Each entry: [selector, keyOrFn]
-// If keyOrFn is a string → innerHTML replacement using TRANSLATIONS[key][lang]
-// If keyOrFn is a function → called with (el, lang)
-const SELECTORS = [
-  // Page title
-  ['title', (el, lang) => { el.textContent = TRANSLATIONS.pageTitle[lang]; }],
-
-  // Packages – Starter
-  ['.pkg:nth-child(1) .badge',       'pkgStarterBadge'],
-  ['.pkg:nth-child(1) .pkg-desc',    'pkgStarterDesc'],
-  ['.pkg:nth-child(1) .price-label', 'pkgStarterLabel'],
-  ['.pkg:nth-child(1) .price-sub',   'pkgStarterSub'],
-  ['.pkg:nth-child(1) .price-unit',  'pkgStarterUnit'],
-  ['.pkg:nth-child(1) .cta-btn',     'pkgCTA'],
-
-  // Packages – Popular (featured = 2nd)
-  ['.pkg:nth-child(2) .badge',       'pkgPopularBadge'],
-  ['.pkg:nth-child(2) .pkg-name',    'pkgPopularName'],
-  ['.pkg:nth-child(2) .pkg-desc',    'pkgPopularDesc'],
-  ['.pkg:nth-child(2) .price-label', 'pkgPopularLabel'],
-  ['.pkg:nth-child(2) .price-sub',   'pkgPopularSub'],
-  ['.pkg:nth-child(2) .price-unit',  'pkgPopularUnit'],
-  ['.pkg:nth-child(2) .cta-btn',     'pkgCTA'],
-
-  // Packages – Ultimate
-  ['.pkg:nth-child(3) .badge',       'pkgUltimateBadge'],
-  ['.pkg:nth-child(3) .pkg-name',    'pkgUltimateName'],
-  ['.pkg:nth-child(3) .pkg-desc',    'pkgUltimateDesc'],
-  ['.pkg:nth-child(3) .price-label', 'pkgUltimateLabel'],
-  ['.pkg:nth-child(3) .price-sub',   'pkgUltimateSub'],
-  ['.pkg:nth-child(3) .price-unit',  'pkgUltimateUnit'],
-  ['.pkg:nth-child(3) .cta-btn',     'pkgCTA'],
-
-  // Section: Door
-  ['#door .section-eyebrow',  'sectionDoorEye'],
-  ['#door .section-title',    'sectionDoorTitle'],
-  ['#door .section-desc',     'sectionDoorDesc'],
-
-  // Section: Light
-  ['#light .section-eyebrow', 'sectionLightEye'],
-  ['#light .section-title',   'sectionLightTitle'],
-  ['#light .section-desc',    'sectionLightDesc'],
-
-  // Section: AI
-  ['#ai .section-eyebrow',    'sectionAiEye'],
-  ['#ai .section-title',      'sectionAiTitle'],
-  ['#ai .section-desc',       'sectionAiDesc'],
-
-  // Section: Control
-  ['#control .section-eyebrow', 'sectionCtrlEye'],
-  ['#control .section-title',   'sectionCtrlTitle'],
-  ['#control .section-desc',    'sectionCtrlDesc'],
-
-  // Section: Security
-  ['#security .section-eyebrow', 'sectionSecEye'],
-  ['#security .section-title',   'sectionSecTitle'],
-  ['#security .section-desc',    'sectionSecDesc'],
-
-  // Section: Auto
-  ['#auto .section-eyebrow', 'sectionAutoEye'],
-  ['#auto .section-title',   'sectionAutoTitle'],
-  ['#auto .section-desc',    'sectionAutoDesc'],
-
-  // Section: Garden
-  ['#garden .section-eyebrow', 'sectionGardenEye'],
-  ['#garden .section-title',   'sectionGardenTitle'],
-  ['#garden .section-desc',    'sectionGardenDesc'],
-
-  // Section: Contact
-  ['#contact .section-eyebrow', 'sectionContactEye'],
-  ['#contact .section-title',   'sectionContactTitle'],
-  ['#contact .section-desc',    'sectionContactDesc'],
-  ['.contact-box h3',           'contactH3'],
-  ['.contact-box p',            'contactP'],
-  ['.contact-line',             'contactLine'],
-  ['.contact-tel',              'contactTel'],
-
-  // Footer
-  ['footer p', 'footerText'],
-];
-
-// ── data-th / data-en attribute elements ────────────────────────
-function applyDataAttrs(lang) {
-  document.querySelectorAll('[data-th][data-en]').forEach(el => {
-    el.innerHTML = el.getAttribute('data-' + lang);
-  });
-}
-
-// ── Apply selector map ───────────────────────────────────────────
-function applySelectors(lang) {
-  SELECTORS.forEach(([sel, keyOrFn]) => {
-    document.querySelectorAll(sel).forEach(el => {
-      if (typeof keyOrFn === 'function') {
-        keyOrFn(el, lang);
-      } else {
-        const t = TRANSLATIONS[keyOrFn];
-        if (t && t[lang] !== undefined) el.innerHTML = t[lang];
-      }
-    });
-  });
-}
-
-// ── Toggle ───────────────────────────────────────────────────────
-let currentLang = 'th';
-
-function setLang(lang) {
-  currentLang = lang;
-  document.documentElement.lang = TRANSLATIONS.htmlLang[lang];
-
-  // Toggle button UI
-  document.getElementById('langTH').classList.toggle('active', lang === 'th');
-  document.getElementById('langEN').classList.toggle('active', lang === 'en');
-
-  applyDataAttrs(lang);
-  applySelectors(lang);
-}
-
-function toggleLang() {
-  setLang(currentLang === 'th' ? 'en' : 'th');
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  setLang('th');
 });
 </script>
 </body>
