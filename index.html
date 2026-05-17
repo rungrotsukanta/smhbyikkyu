@@ -1429,6 +1429,11 @@ function setLang(lang) {
 function toggleLang() {
   setLang(currentLang === 'th' ? 'en' : 'th');
 }
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  setLang('th');
+});
 </script>
 </body>
 </html>
