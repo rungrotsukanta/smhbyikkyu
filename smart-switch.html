@@ -407,49 +407,80 @@
 
     /* ── DIVIDER ── */
     .divider { height: 1px; background: var(--border); margin: 0 24px 48px; max-width: calc(680px - 48px); margin-left: auto; margin-right: auto; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      flex-shrink: 0;
+      font-family: 'Kanit', sans-serif;
+      font-size: 11px; font-weight: 500;
+      display: flex; align-items: center;
+      background: rgba(244,248,253,0.9);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      gap: 0;
+    }
+    .lang-toggle span {
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      color: var(--text-dim);
+      user-select: none;
+    }
+    .lang-toggle span.active {
+      background: var(--blue);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
 
   <!-- TOPBAR -->
   <nav class="topbar">
-    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#control">
+    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#control" data-th="กลับหน้าหลัก" data-en="Back">
       <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       กลับหน้าหลัก
     </a>
     <span class="topbar-brand">SMH by Ikkyu</span>
-    <a class="topbar-line" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20Switch%20สวิตช์ไฟอัจฉริยะ%20%E0%B8%BF999.-" target="_blank" rel="noopener">
-      💬 Line
-    </a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="lang-toggle" onclick="toggleLang()">
+        <span id="langTH" class="active">TH</span>
+        <span id="langEN">EN</span>
+      </div>
+      <a class="topbar-line" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20Switch%20สวิตช์ไฟอัจฉริยะ%20%E0%B8%BF999.-" target="_blank" rel="noopener">
+        💬 Line
+      </a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="badge-row">
-      <span class="badge badge-cat">ควบคุมไฟฟ้า</span>
+      <span class="badge badge-cat" data-th="ควบคุมไฟฟ้า" data-en="Electrical Control">ควบคุมไฟฟ้า</span>
       <span class="badge badge-type">Wi-Fi Control</span>
-      <span class="badge badge-hot">⭐ ขายดี</span>
+      <span class="badge badge-hot" data-th="⭐ ขายดี" data-en="⭐ Best Seller">⭐ ขายดี</span>
     </div>
-    <h1>Smart Switch<br/><span>สวิตช์ไฟอัจฉริยะ</span></h1>
-    <p class="hero-sub">
+    <h1>Smart Switch<br/><span data-th="สวิตช์ไฟอัจฉริยะ" data-en="Smart Light Switch">สวิตช์ไฟอัจฉริยะ</span></h1>
+    <p class="hero-sub" data-th="เปลี่ยนสวิตช์ธรรมดาให้สั่งได้ทุกที่ผ่านมือถือ&lt;br/&gt;ไม่ต้องเดินเปิด-ปิดไฟ · รวมติดตั้ง + ประกัน 1 ปี" data-en="Turn any switch into a smart one — control from anywhere&lt;br/&gt;No more walking to flip lights · Includes installation + 1-Year Warranty">
       เปลี่ยนสวิตช์ธรรมดาให้สั่งได้ทุกที่ผ่านมือถือ<br/>
       ไม่ต้องเดินเปิด-ปิดไฟ · รวมติดตั้ง + ประกัน 1 ปี
     </p>
 
-    <div class="free-badge">
+    <div class="free-badge" data-th="✅ ติดตั้งง่าย ไม่ต้องเดินสายใหม่" data-en="✅ Easy Install — No Rewiring Needed">
       ✅ ติดตั้งง่าย ไม่ต้องเดินสายใหม่
     </div>
 
     <div class="price-block">
       <span class="price-main">฿999</span>
       <div class="price-label">
-        <strong>ต่อจุด รวมติดตั้ง</strong>
-        ประกัน 1 ปี ทุกรายการ
+        <strong data-th="ต่อจุด รวมติดตั้ง" data-en="Per Point, Installation Included">ต่อจุด รวมติดตั้ง</strong>
+        <span data-th="ประกัน 1 ปี ทุกรายการ" data-en="1-Year Warranty on all items">ประกัน 1 ปี ทุกรายการ</span>
       </div>
     </div>
 
     <div class="cta-row">
-      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20Switch%20สวิตช์ไฟอัจฉริยะ%20%E0%B8%BF999.-" target="_blank" rel="noopener">
+      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20Switch%20สวิตช์ไฟอัจฉริยะ%20%E0%B8%BF999.-" target="_blank" rel="noopener" data-th="💬 สอบถาม Line" data-en="💬 Line Chat">
         💬 สอบถาม Line
       </a>
       <a class="btn-secondary" href="tel:0924501138">
@@ -460,8 +491,8 @@
 
   <!-- VIDEO -->
   <section class="video-section">
-    <p class="section-label">ดูการใช้งานจริง</p>
-    <h2 class="video-title">วิดีโอการใช้งาน</h2>
+    <p class="section-label" data-th="ดูการใช้งานจริง" data-en="See It In Action">ดูการใช้งานจริง</p>
+    <h2 class="video-title" data-th="วิดีโอการใช้งาน" data-en="Demo Video">วิดีโอการใช้งาน</h2>
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/K3xHScqnYoI"
@@ -470,56 +501,56 @@
         allowfullscreen
       ></iframe>
     </div>
-    <p class="video-caption">กดเพื่อดูวิดีโอสาธิต · Smart Switch สั่งงานผ่านมือถือและเสียง</p>
+    <p class="video-caption" data-th="กดเพื่อดูวิดีโอสาธิต · Smart Switch สั่งงานผ่านมือถือและเสียง" data-en="Tap to watch the demo · Smart Switch via app and voice">กดเพื่อดูวิดีโอสาธิต · Smart Switch สั่งงานผ่านมือถือและเสียง</p>
   </section>
 
   <div class="divider"></div>
 
   <!-- FEATURES -->
   <section class="features-section">
-    <p class="section-label">คุณสมบัติ</p>
-    <h2 class="video-title" style="margin-bottom:20px;">ฟีเจอร์ครบ ใช้งานง่าย</h2>
+    <p class="section-label" data-th="คุณสมบัติ" data-en="Features">คุณสมบัติ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ฟีเจอร์ครบ ใช้งานง่าย" data-en="Full Features, Easy to Use">ฟีเจอร์ครบ ใช้งานง่าย</h2>
     <div class="features-grid">
       <div class="feat-card">
         <div class="feat-icon">📱</div>
         <div class="feat-text">
-          <strong>สั่งผ่านมือถือ</strong>
-          <span>เปิด-ปิดไฟจากที่ไหนก็ได้ทั่วโลก ผ่านแอป</span>
+          <strong data-th="สั่งผ่านมือถือ" data-en="App Control">สั่งผ่านมือถือ</strong>
+          <span data-th="เปิด-ปิดไฟจากที่ไหนก็ได้ทั่วโลก ผ่านแอป" data-en="Turn lights on/off from anywhere in the world via app">เปิด-ปิดไฟจากที่ไหนก็ได้ทั่วโลก ผ่านแอป</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🗣️</div>
         <div class="feat-text">
-          <strong>สั่งด้วยเสียง</strong>
-          <span>รองรับ Alexa และ Google Assistant</span>
+          <strong data-th="สั่งด้วยเสียง" data-en="Voice Control">สั่งด้วยเสียง</strong>
+          <span data-th="รองรับ Alexa และ Google Assistant" data-en="Works with Alexa and Google Assistant">รองรับ Alexa และ Google Assistant</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">⏰</div>
         <div class="feat-text">
-          <strong>ตั้งเวลาอัตโนมัติ</strong>
-          <span>กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง</span>
+          <strong data-th="ตั้งเวลาอัตโนมัติ" data-en="Auto Schedule">ตั้งเวลาอัตโนมัติ</strong>
+          <span data-th="กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง" data-en="Set daily on/off schedules — no need to remember">กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🔄</div>
         <div class="feat-text">
-          <strong>ใช้สวิตช์เดิมได้</strong>
-          <span>กดปิดจากสวิตช์ที่ผนังก็ยังได้เหมือนเดิม</span>
+          <strong data-th="ใช้สวิตช์เดิมได้" data-en="Works With Existing Switch">ใช้สวิตช์เดิมได้</strong>
+          <span data-th="กดปิดจากสวิตช์ที่ผนังก็ยังได้เหมือนเดิม" data-en="The physical wall switch still works as normal">กดปิดจากสวิตช์ที่ผนังก็ยังได้เหมือนเดิม</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🏠</div>
         <div class="feat-text">
-          <strong>ต่อพ่วงหลายจุด</strong>
-          <span>ควบคุมหลายสวิตช์พร้อมกัน ทั่วทั้งบ้าน</span>
+          <strong data-th="ต่อพ่วงหลายจุด" data-en="Multi-Point Control">ต่อพ่วงหลายจุด</strong>
+          <span data-th="ควบคุมหลายสวิตช์พร้อมกัน ทั่วทั้งบ้าน" data-en="Control multiple switches simultaneously across the whole house">ควบคุมหลายสวิตช์พร้อมกัน ทั่วทั้งบ้าน</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">⚡</div>
         <div class="feat-text">
-          <strong>ติดตั้งง่าย</strong>
-          <span>ไม่ต้องเดินสายใหม่ เข้าแทนสวิตช์เดิมได้เลย</span>
+          <strong data-th="ติดตั้งง่าย" data-en="Easy Installation">ติดตั้งง่าย</strong>
+          <span data-th="ไม่ต้องเดินสายใหม่ เข้าแทนสวิตช์เดิมได้เลย" data-en="No rewiring — drops right into your existing switch box">ไม่ต้องเดินสายใหม่ เข้าแทนสวิตช์เดิมได้เลย</span>
         </div>
       </div>
     </div>
@@ -529,28 +560,28 @@
 
   <!-- USE CASES -->
   <section class="usecases-section">
-    <p class="section-label">ตัวอย่างการใช้งาน</p>
-    <h2 class="video-title" style="margin-bottom:20px;">ใช้งานได้แบบไหนบ้าง?</h2>
+    <p class="section-label" data-th="ตัวอย่างการใช้งาน" data-en="Use Cases">ตัวอย่างการใช้งาน</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ใช้งานได้แบบไหนบ้าง?" data-en="How Can You Use It?">ใช้งานได้แบบไหนบ้าง?</h2>
     <div class="usecase-list">
       <div class="usecase-item">
-        <span class="cmd">📱 เปิดจากนอกบ้าน</span>
-        <span class="desc">ลืมปิดไฟ? สั่งปิดได้ทันทีจากที่ทำงาน</span>
+        <span class="cmd" data-th="📱 เปิดจากนอกบ้าน" data-en="📱 Control From Outside">📱 เปิดจากนอกบ้าน</span>
+        <span class="desc" data-th="ลืมปิดไฟ? สั่งปิดได้ทันทีจากที่ทำงาน" data-en="Left the lights on? Turn them off instantly from work">ลืมปิดไฟ? สั่งปิดได้ทันทีจากที่ทำงาน</span>
       </div>
       <div class="usecase-item">
-        <span class="cmd">🗣️ สั่งด้วยเสียง</span>
-        <span class="desc">"Alexa, ปิดไฟห้องนอน" ไม่ต้องลุกจากเตียง</span>
+        <span class="cmd" data-th="🗣️ สั่งด้วยเสียง" data-en="🗣️ Voice Command"">🗣️ สั่งด้วยเสียง</span>
+        <span class="desc" data-th='"Alexa, ปิดไฟห้องนอน" ไม่ต้องลุกจากเตียง' data-en='"Alexa, turn off bedroom lights" — no need to get up'>"Alexa, ปิดไฟห้องนอน" ไม่ต้องลุกจากเตียง</span>
       </div>
       <div class="usecase-item">
-        <span class="cmd">⏰ ตั้งตารางอัตโนมัติ</span>
-        <span class="desc">ไฟหน้าบ้านเปิดตอนเย็น ปิดตอนเช้า เองอัตโนมัติ</span>
+        <span class="cmd" data-th="⏰ ตั้งตารางอัตโนมัติ" data-en="⏰ Auto Schedule">⏰ ตั้งตารางอัตโนมัติ</span>
+        <span class="desc" data-th="ไฟหน้าบ้านเปิดตอนเย็น ปิดตอนเช้า เองอัตโนมัติ" data-en="Porch light turns on at dusk, off at dawn — automatically">ไฟหน้าบ้านเปิดตอนเย็น ปิดตอนเช้า เองอัตโนมัติ</span>
       </div>
       <div class="usecase-item">
-        <span class="cmd">🏠 Scene ทั้งบ้าน</span>
-        <span class="desc">กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน</span>
+        <span class="cmd" data-th="🏠 Scene ทั้งบ้าน" data-en="🏠 Whole-Home Scene">🏠 Scene ทั้งบ้าน</span>
+        <span class="desc" data-th="กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน" data-en="One tap turns off every light in the house before bed">กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน</span>
       </div>
       <div class="usecase-item">
-        <span class="cmd">📍 ตามตำแหน่ง</span>
-        <span class="desc">ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน ปิดเมื่อออกจากบ้าน</span>
+        <span class="cmd" data-th="📍 ตามตำแหน่ง" data-en="📍 Location Trigger">📍 ตามตำแหน่ง</span>
+        <span class="desc" data-th="ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน ปิดเมื่อออกจากบ้าน" data-en="Lights turn on when you arrive, off when you leave">ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน ปิดเมื่อออกจากบ้าน</span>
       </div>
     </div>
   </section>
@@ -559,40 +590,40 @@
 
   <!-- SPECS -->
   <section class="specs-section">
-    <p class="section-label">ข้อมูลจำเพาะ</p>
-    <h2 class="video-title" style="margin-bottom:20px;">รายละเอียดสินค้า</h2>
+    <p class="section-label" data-th="ข้อมูลจำเพาะ" data-en="Specifications">ข้อมูลจำเพาะ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="รายละเอียดสินค้า" data-en="Product Details">รายละเอียดสินค้า</h2>
     <div class="specs-table">
       <div class="spec-row">
-        <div class="spec-key">สินค้า</div>
-        <div class="spec-val">Smart Switch สวิตช์ไฟอัจฉริยะ</div>
+        <div class="spec-key" data-th="สินค้า" data-en="Product">สินค้า</div>
+        <div class="spec-val" data-th="Smart Switch สวิตช์ไฟอัจฉริยะ" data-en="Smart Switch – Smart Light Switch">Smart Switch สวิตช์ไฟอัจฉริยะ</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">การเชื่อมต่อ</div>
+        <div class="spec-key" data-th="การเชื่อมต่อ" data-en="Connectivity">การเชื่อมต่อ</div>
         <div class="spec-val">Wi-Fi 2.4GHz</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">การสั่งงาน</div>
-        <div class="spec-val">แอป / เสียง Alexa & Google / สวิตช์ผนังเดิม</div>
+        <div class="spec-key" data-th="การสั่งงาน" data-en="Control">การสั่งงาน</div>
+        <div class="spec-val" data-th="แอป / เสียง Alexa & Google / สวิตช์ผนังเดิม" data-en="App / Voice Alexa & Google / Physical wall switch">แอป / เสียง Alexa & Google / สวิตช์ผนังเดิม</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">รองรับ</div>
+        <div class="spec-key" data-th="รองรับ" data-en="Compatible With">รองรับ</div>
         <div class="spec-val">Alexa · Google Assistant · SmartLife App</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">การติดตั้ง</div>
-        <div class="spec-val">เข้าแทนสวิตช์เดิม ไม่ต้องเดินสายใหม่</div>
+        <div class="spec-key" data-th="การติดตั้ง" data-en="Installation">การติดตั้ง</div>
+        <div class="spec-val" data-th="เข้าแทนสวิตช์เดิม ไม่ต้องเดินสายใหม่" data-en="Replaces existing switch — no rewiring required">เข้าแทนสวิตช์เดิม ไม่ต้องเดินสายใหม่</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ใช้งานร่วมกับ</div>
+        <div class="spec-key" data-th="ใช้งานร่วมกับ" data-en="Works With">ใช้งานร่วมกับ</div>
         <div class="spec-val">Alexa Echo Dot · Smart Light · IR Remote · CCTV</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ประกัน</div>
-        <div class="spec-val">1 ปี รวมค่าบริการ</div>
+        <div class="spec-key" data-th="ประกัน" data-en="Warranty">ประกัน</div>
+        <div class="spec-val" data-th="1 ปี รวมค่าบริการ" data-en="1 Year incl. service">1 ปี รวมค่าบริการ</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ราคา</div>
-        <div class="spec-val"><strong style="color:var(--blue)">฿999</strong> ต่อจุด รวมติดตั้ง</div>
+        <div class="spec-key" data-th="ราคา" data-en="Price">ราคา</div>
+        <div class="spec-val"><strong style="color:var(--blue)">฿999</strong> <span data-th="ต่อจุด รวมติดตั้ง" data-en="per point, incl. installation">ต่อจุด รวมติดตั้ง</span></div>
       </div>
     </div>
   </section>
@@ -604,16 +635,16 @@
     <div class="guarantee-inner">
       <div class="guarantee-icon">🛡️</div>
       <div class="guarantee-text">
-        <strong>รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
-        <span>ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
+        <strong data-th="รวมติดตั้ง + ประกัน 1 ปีทุกรายการ" data-en="Installation + 1-Year Warranty on All Items">รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
+        <span data-th="ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ" data-en="Professional team · 24/7 after-sales support · Customizable to your needs">ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
       </div>
     </div>
   </div>
 
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
-    <h2>สนใจ? สอบถามได้เลยครับ</h2>
-    <p>ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
+    <h2 data-th="สนใจ? สอบถามได้เลยครับ" data-en="Interested? Ask Us Anytime">สนใจ? สอบถามได้เลยครับ</h2>
+    <p data-th="ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน" data-en="Customizable to your needs · Fast reply every day">ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
     <a class="btn-line-big" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20Switch%20สวิตช์ไฟอัจฉริยะ%20%E0%B8%BF999.-" target="_blank" rel="noopener">
       💬 Line: @255cozlc
     </a>
@@ -621,10 +652,26 @@
 
   <!-- FOOTER -->
   <footer>
-    SMH by Ikkyu · บริการ Smart Home ครบวงจร<br/>
+    <span data-th="SMH by Ikkyu · บริการ Smart Home ครบวงจร" data-en="SMH by Ikkyu · Complete Smart Home Service">SMH by Ikkyu · บริการ Smart Home ครบวงจร</span><br/>
     <a href="https://lin.ee/9AcwOJj">Line: @255cozlc</a> · <a href="tel:0924501138">092-450-1138</a><br/>
-    รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ
+    <span data-th="รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ" data-en="Installation + 1-Year Warranty on all items">รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ</span>
   </footer>
 
+<script>
+function applyDataAttrs(lang) {
+  document.querySelectorAll('[data-th][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+}
+let currentLang = 'th';
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('langTH').classList.toggle('active', lang === 'th');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  applyDataAttrs(lang);
+}
+function toggleLang() { setLang(currentLang === 'th' ? 'en' : 'th'); }
+</script>
 </body>
 </html>
