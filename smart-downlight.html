@@ -453,49 +453,80 @@
     footer a { color: var(--blue); text-decoration: none; }
 
     .divider { height: 1px; background: var(--border); margin: 0 24px 48px; max-width: calc(680px - 48px); margin-left: auto; margin-right: auto; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      flex-shrink: 0;
+      font-family: 'Kanit', sans-serif;
+      font-size: 11px; font-weight: 500;
+      display: flex; align-items: center;
+      background: rgba(244,248,253,0.9);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      gap: 0;
+    }
+    .lang-toggle span {
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      color: var(--text-dim);
+      user-select: none;
+    }
+    .lang-toggle span.active {
+      background: var(--blue);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
 
   <!-- TOPBAR -->
   <nav class="topbar">
-    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#light">
+    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#light" data-th="กลับหน้าหลัก" data-en="Back">
       <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       กลับหน้าหลัก
     </a>
     <span class="topbar-brand">SMH by Ikkyu</span>
-    <a class="topbar-line" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ" target="_blank" rel="noopener">
-      💬 Line
-    </a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="lang-toggle" onclick="toggleLang()">
+        <span id="langTH" class="active">TH</span>
+        <span id="langEN">EN</span>
+      </div>
+      <a class="topbar-line" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ" target="_blank" rel="noopener">
+        💬 Line
+      </a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="badge-row">
-      <span class="badge badge-cat">ไฟส่องสว่าง</span>
-      <span class="badge badge-type">RGB 16 ล้านสี</span>
-      <span class="badge badge-hot">⭐ ขายดี</span>
+      <span class="badge badge-cat" data-th="ไฟส่องสว่าง" data-en="Lighting">ไฟส่องสว่าง</span>
+      <span class="badge badge-type" data-th="RGB 16 ล้านสี" data-en="16M RGB Colours">RGB 16 ล้านสี</span>
+      <span class="badge badge-hot" data-th="⭐ ขายดี" data-en="⭐ Best Seller">⭐ ขายดี</span>
     </div>
-    <h1>Smart RGB Downlight<br/><span>ไฟดาวน์ไลท์อัจฉริยะ</span></h1>
-    <p class="hero-sub">
+    <h1>Smart RGB Downlight<br/><span data-th="ไฟดาวน์ไลท์อัจฉริยะ" data-en="Smart RGB Downlight">ไฟดาวน์ไลท์อัจฉริยะ</span></h1>
+    <p class="hero-sub" data-th="แบบฝังฝ้า RGB 16 ล้านเฉดสี · สั่งด้วยเสียงหรือแอป&lt;br/&gt;ไฟเปลี่ยนตามจังหวะเพลง · รวมติดตั้ง + ประกัน 1 ปี" data-en="Recessed ceiling, 16M RGB colours · Voice or app control&lt;br/&gt;Music sync mode · Includes installation + 1-Year Warranty">
       แบบฝังฝ้า RGB 16 ล้านเฉดสี · สั่งด้วยเสียงหรือแอป<br/>
       ไฟเปลี่ยนตามจังหวะเพลง · รวมติดตั้ง + ประกัน 1 ปี
     </p>
 
-    <div class="free-badge">
+    <div class="free-badge" data-th="✅ RGB 16 ล้านเฉดสี · ปรับความสว่างได้อิสระ" data-en="✅ 16M RGB Colours · Freely Adjustable Brightness">
       ✅ RGB 16 ล้านเฉดสี · ปรับความสว่างได้อิสระ
     </div>
 
     <div class="price-block">
       <span class="price-main">฿1,250</span>
       <div class="price-label">
-        <strong>ฝ้าแผ่น รวมติดตั้ง</strong>
-        ฝ้าฉาบ ฿1,560 · ประกัน 1 ปี
+        <strong data-th="ฝ้าแผ่น รวมติดตั้ง" data-en="Panel Ceiling, Incl. Installation">ฝ้าแผ่น รวมติดตั้ง</strong>
+        <span data-th="ฝ้าฉาบ ฿1,560 · ประกัน 1 ปี" data-en="Plastered Ceiling ฿1,560 · 1-Year Warranty">ฝ้าฉาบ ฿1,560 · ประกัน 1 ปี</span>
       </div>
     </div>
 
     <div class="cta-row">
-      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ%20฿1%2C560.-" target="_blank" rel="noopener">
+      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ%20฿1%2C560.-" target="_blank" rel="noopener" data-th="💬 สอบถาม Line" data-en="💬 Line Chat">
         💬 สอบถาม Line
       </a>
       <a class="btn-secondary" href="tel:0924501138">
@@ -506,8 +537,8 @@
 
   <!-- VIDEO -->
   <section class="video-section">
-    <p class="section-label">ดูการใช้งานจริง</p>
-    <h2 class="video-title">วิดีโอการใช้งาน</h2>
+    <p class="section-label" data-th="ดูการใช้งานจริง" data-en="See It In Action">ดูการใช้งานจริง</p>
+    <h2 class="video-title" data-th="วิดีโอการใช้งาน" data-en="Demo Video">วิดีโอการใช้งาน</h2>
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/UYwa0BhP_04"
@@ -516,27 +547,27 @@
         allowfullscreen
       ></iframe>
     </div>
-    <p class="video-caption">กดเพื่อดูวิดีโอสาธิต · Smart RGB Downlight สั่งสีและความสว่างผ่านเสียง</p>
+    <p class="video-caption" data-th="กดเพื่อดูวิดีโอสาธิต · Smart RGB Downlight สั่งสีและความสว่างผ่านเสียง" data-en="Tap to watch the demo · Smart RGB Downlight — colour and brightness by voice">กดเพื่อดูวิดีโอสาธิต · Smart RGB Downlight สั่งสีและความสว่างผ่านเสียง</p>
   </section>
 
   <div class="divider"></div>
 
   <!-- PRICE TABLE -->
   <section class="price-table-section">
-    <p class="section-label">ตัวเลือกราคา</p>
-    <h2 class="video-title" style="margin-bottom:20px;">เลือกตามประเภทฝ้า</h2>
+    <p class="section-label" data-th="ตัวเลือกราคา" data-en="Pricing Options">ตัวเลือกราคา</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="เลือกตามประเภทฝ้า" data-en="Choose by Ceiling Type">เลือกตามประเภทฝ้า</h2>
     <div class="price-cards">
       <div class="price-card">
-        <div class="price-card-label">สำหรับ</div>
-        <div class="price-card-name">ฝ้าแผ่น</div>
+        <div class="price-card-label" data-th="สำหรับ" data-en="For">สำหรับ</div>
+        <div class="price-card-name" data-th="ฝ้าแผ่น" data-en="Panel Ceiling">ฝ้าแผ่น</div>
         <div class="price-card-price">฿1,250</div>
-        <div class="price-card-note">ต่อดวง รวมติดตั้ง</div>
+        <div class="price-card-note" data-th="ต่อดวง รวมติดตั้ง" data-en="Per light, incl. installation">ต่อดวง รวมติดตั้ง</div>
       </div>
       <div class="price-card highlight">
-        <div class="price-card-label">สำหรับ</div>
-        <div class="price-card-name">ฝ้าฉาบ</div>
+        <div class="price-card-label" data-th="สำหรับ" data-en="For">สำหรับ</div>
+        <div class="price-card-name" data-th="ฝ้าฉาบ" data-en="Plastered Ceiling">ฝ้าฉาบ</div>
         <div class="price-card-price">฿1,560</div>
-        <div class="price-card-note">ต่อดวง รวมติดตั้ง</div>
+        <div class="price-card-note" data-th="ต่อดวง รวมติดตั้ง" data-en="Per light, incl. installation">ต่อดวง รวมติดตั้ง</div>
       </div>
     </div>
   </section>
@@ -545,49 +576,49 @@
 
   <!-- FEATURES -->
   <section class="features-section">
-    <p class="section-label">คุณสมบัติ</p>
-    <h2 class="video-title" style="margin-bottom:20px;">ฟีเจอร์ครบ ใช้งานง่าย</h2>
+    <p class="section-label" data-th="คุณสมบัติ" data-en="Features">คุณสมบัติ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ฟีเจอร์ครบ ใช้งานง่าย" data-en="Full Features, Easy to Use">ฟีเจอร์ครบ ใช้งานง่าย</h2>
     <div class="features-grid">
       <div class="feat-card">
         <div class="feat-icon">🎨</div>
         <div class="feat-text">
-          <strong>RGB 16 ล้านเฉดสี</strong>
-          <span>ปรับสีได้อิสระ เซ็ตบรรยากาศห้องได้ตามใจ</span>
+          <strong data-th="RGB 16 ล้านเฉดสี" data-en="16M RGB Colours">RGB 16 ล้านเฉดสี</strong>
+          <span data-th="ปรับสีได้อิสระ เซ็ตบรรยากาศห้องได้ตามใจ" data-en="Freely choose any colour to set the perfect room mood">ปรับสีได้อิสระ เซ็ตบรรยากาศห้องได้ตามใจ</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🗣️</div>
         <div class="feat-text">
-          <strong>สั่งด้วยเสียง</strong>
-          <span>รองรับ Alexa และ Google Assistant</span>
+          <strong data-th="สั่งด้วยเสียง" data-en="Voice Control">สั่งด้วยเสียง</strong>
+          <span data-th="รองรับ Alexa และ Google Assistant" data-en="Works with Alexa and Google Assistant">รองรับ Alexa และ Google Assistant</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">📱</div>
         <div class="feat-text">
-          <strong>สั่งผ่านแอป</strong>
-          <span>ปรับสี ความสว่าง เปิด-ปิด จากมือถือได้ทุกที่</span>
+          <strong data-th="สั่งผ่านแอป" data-en="App Control">สั่งผ่านแอป</strong>
+          <span data-th="ปรับสี ความสว่าง เปิด-ปิด จากมือถือได้ทุกที่" data-en="Adjust colour, brightness, on/off from your phone anywhere">ปรับสี ความสว่าง เปิด-ปิด จากมือถือได้ทุกที่</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🎶</div>
         <div class="feat-text">
-          <strong>ไฟเต้นตามเพลง</strong>
-          <span>ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศได้เลย</span>
+          <strong data-th="ไฟเต้นตามเพลง" data-en="Music Sync Mode">ไฟเต้นตามเพลง</strong>
+          <span data-th="ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศได้เลย" data-en="Colours pulse with the music beat for instant atmosphere">ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศได้เลย</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">⏰</div>
         <div class="feat-text">
-          <strong>ตั้งเวลาอัตโนมัติ</strong>
-          <span>กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง</span>
+          <strong data-th="ตั้งเวลาอัตโนมัติ" data-en="Auto Schedule">ตั้งเวลาอัตโนมัติ</strong>
+          <span data-th="กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง" data-en="Set daily on/off schedules — no need to remember">กำหนดเวลาเปิด-ปิดไฟทุกวัน ไม่ต้องจำเอง</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🤖</div>
         <div class="feat-text">
-          <strong>เปิดอัตโนมัติ</strong>
-          <span>ตั้งให้ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน</span>
+          <strong data-th="เปิดอัตโนมัติ" data-en="Auto-On">เปิดอัตโนมัติ</strong>
+          <span data-th="ตั้งให้ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน" data-en="Lights turn on automatically when you arrive home">ตั้งให้ไฟเปิดอัตโนมัติเมื่อกลับถึงบ้าน</span>
         </div>
       </div>
     </div>
@@ -597,28 +628,28 @@
 
   <!-- USE CASES -->
   <section class="usecases-section">
-    <p class="section-label">ตัวอย่างการใช้งาน</p>
-    <h2 class="video-title" style="margin-bottom:20px;">ใช้งานได้แบบไหนบ้าง?</h2>
+    <p class="section-label" data-th="ตัวอย่างการใช้งาน" data-en="Use Cases">ตัวอย่างการใช้งาน</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ใช้งานได้แบบไหนบ้าง?" data-en="How Can You Use It?">ใช้งานได้แบบไหนบ้าง?</h2>
     <div class="usecase-list">
       <div class="usecase-item">
-        <span class="cmd">🗣️ สั่งด้วยเสียง</span>
-        <span class="desc">"Alexa, เปิดไฟห้องนอนสีฟ้า" ไม่ต้องลุกจากเตียง</span>
+        <span class="cmd">🗣️ <span data-th="สั่งด้วยเสียง" data-en="Voice Command">สั่งด้วยเสียง</span></span>
+        <span class="desc" data-th='"Alexa, เปิดไฟห้องนอนสีฟ้า" ไม่ต้องลุกจากเตียง' data-en='"Alexa, set bedroom lights to blue" — no need to get up'>"Alexa, เปิดไฟห้องนอนสีฟ้า" ไม่ต้องลุกจากเตียง</span>
       </div>
       <div class="usecase-item">
         <span class="cmd">🎶 Music Mode</span>
-        <span class="desc">ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศปาร์ตี้</span>
+        <span class="desc" data-th="ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศปาร์ตี้" data-en="Colours pulse with the beat — instant party atmosphere">ไฟเปลี่ยนสีตามจังหวะเพลง สร้างบรรยากาศปาร์ตี้</span>
       </div>
       <div class="usecase-item">
         <span class="cmd">🌅 Wake Up Scene</span>
-        <span class="desc">ไฟค่อยๆ สว่างขึ้นตอนเช้า ตื่นนอนสบายตา</span>
+        <span class="desc" data-th="ไฟค่อยๆ สว่างขึ้นตอนเช้า ตื่นนอนสบายตา" data-en="Light gradually brightens in the morning for a gentle wake-up">ไฟค่อยๆ สว่างขึ้นตอนเช้า ตื่นนอนสบายตา</span>
       </div>
       <div class="usecase-item">
         <span class="cmd">🎬 Movie Mode</span>
-        <span class="desc">หรี่ไฟลงอัตโนมัติเมื่อเปิดทีวี บรรยากาศโรงหนัง</span>
+        <span class="desc" data-th="หรี่ไฟลงอัตโนมัติเมื่อเปิดทีวี บรรยากาศโรงหนัง" data-en="Lights dim automatically when the TV turns on — cinema feel">หรี่ไฟลงอัตโนมัติเมื่อเปิดทีวี บรรยากาศโรงหนัง</span>
       </div>
       <div class="usecase-item">
-        <span class="cmd">🏠 Scene ทั้งบ้าน</span>
-        <span class="desc">กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน</span>
+        <span class="cmd">🏠 <span data-th="Scene ทั้งบ้าน" data-en="Whole-Home Scene">Scene ทั้งบ้าน</span></span>
+        <span class="desc" data-th="กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน" data-en="One tap turns off every light before bed">กดปุ่มเดียว ปิดไฟทั้งบ้านก่อนนอน</span>
       </div>
     </div>
   </section>
@@ -627,40 +658,40 @@
 
   <!-- SPECS -->
   <section class="specs-section">
-    <p class="section-label">ข้อมูลจำเพาะ</p>
-    <h2 class="video-title" style="margin-bottom:20px;">รายละเอียดสินค้า</h2>
+    <p class="section-label" data-th="ข้อมูลจำเพาะ" data-en="Specifications">ข้อมูลจำเพาะ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="รายละเอียดสินค้า" data-en="Product Details">รายละเอียดสินค้า</h2>
     <div class="specs-table">
       <div class="spec-row">
-        <div class="spec-key">สินค้า</div>
-        <div class="spec-val">Smart RGB Downlight ไฟดาวน์ไลท์อัจฉริยะ</div>
+        <div class="spec-key" data-th="สินค้า" data-en="Product">สินค้า</div>
+        <div class="spec-val" data-th="Smart RGB Downlight ไฟดาวน์ไลท์อัจฉริยะ" data-en="Smart RGB Downlight">Smart RGB Downlight ไฟดาวน์ไลท์อัจฉริยะ</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ขนาด / กำลังไฟ</div>
-        <div class="spec-val">12W / 18W (มีให้เลือก)</div>
+        <div class="spec-key" data-th="ขนาด / กำลังไฟ" data-en="Size / Power">ขนาด / กำลังไฟ</div>
+        <div class="spec-val" data-th="12W / 18W (มีให้เลือก)" data-en="12W / 18W (your choice)">12W / 18W (มีให้เลือก)</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">สี</div>
-        <div class="spec-val">RGB 16 ล้านเฉดสี + ปรับความสว่างได้อิสระ</div>
+        <div class="spec-key" data-th="สี" data-en="Colour">สี</div>
+        <div class="spec-val" data-th="RGB 16 ล้านเฉดสี + ปรับความสว่างได้อิสระ" data-en="16M RGB colours + freely adjustable brightness">RGB 16 ล้านเฉดสี + ปรับความสว่างได้อิสระ</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">การเชื่อมต่อ</div>
+        <div class="spec-key" data-th="การเชื่อมต่อ" data-en="Connectivity">การเชื่อมต่อ</div>
         <div class="spec-val">Wi-Fi 2.4GHz</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">การสั่งงาน</div>
-        <div class="spec-val">แอป / เสียง Alexa & Google / ตั้งเวลา</div>
+        <div class="spec-key" data-th="การสั่งงาน" data-en="Control">การสั่งงาน</div>
+        <div class="spec-val" data-th="แอป / เสียง Alexa & Google / ตั้งเวลา" data-en="App / Voice Alexa & Google / Schedule">แอป / เสียง Alexa & Google / ตั้งเวลา</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">รองรับ</div>
+        <div class="spec-key" data-th="รองรับ" data-en="Compatible With">รองรับ</div>
         <div class="spec-val">Alexa · Google Assistant · SmartLife App</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ประเภทฝ้า</div>
-        <div class="spec-val">ฝ้าแผ่น ฿1,250 · ฝ้าฉาบ ฿1,560 (ต่อดวง)</div>
+        <div class="spec-key" data-th="ประเภทฝ้า" data-en="Ceiling Type">ประเภทฝ้า</div>
+        <div class="spec-val" data-th="ฝ้าแผ่น ฿1,250 · ฝ้าฉาบ ฿1,560 (ต่อดวง)" data-en="Panel ฿1,250 · Plastered ฿1,560 (per light)">ฝ้าแผ่น ฿1,250 · ฝ้าฉาบ ฿1,560 (ต่อดวง)</div>
       </div>
       <div class="spec-row">
-        <div class="spec-key">ประกัน</div>
-        <div class="spec-val">1 ปี รวมค่าบริการ</div>
+        <div class="spec-key" data-th="ประกัน" data-en="Warranty">ประกัน</div>
+        <div class="spec-val" data-th="1 ปี รวมค่าบริการ" data-en="1 Year incl. service">1 ปี รวมค่าบริการ</div>
       </div>
     </div>
   </section>
@@ -672,16 +703,16 @@
     <div class="guarantee-inner">
       <div class="guarantee-icon">🛡️</div>
       <div class="guarantee-text">
-        <strong>รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
-        <span>ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
+        <strong data-th="รวมติดตั้ง + ประกัน 1 ปีทุกรายการ" data-en="Installation + 1-Year Warranty on All Items">รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
+        <span data-th="ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ" data-en="Professional team · 24/7 after-sales support · Customizable to your needs">ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
       </div>
     </div>
   </div>
 
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
-    <h2>สนใจ? สอบถามได้เลยครับ</h2>
-    <p>ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
+    <h2 data-th="สนใจ? สอบถามได้เลยครับ" data-en="Interested? Ask Us Anytime">สนใจ? สอบถามได้เลยครับ</h2>
+    <p data-th="ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน" data-en="Customizable to your needs · Fast reply every day">ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
     <a class="btn-line-big" href="https://lin.ee/9AcwOJj?text=สนใจสินค้า%3A%20Smart%20RGB%20Downlight%20ไฟดาวน์ไลท์อัจฉริยะ%20฿1%2C560.-" target="_blank" rel="noopener">
       💬 Line: @255cozlc
     </a>
@@ -689,10 +720,26 @@
 
   <!-- FOOTER -->
   <footer>
-    SMH by Ikkyu · บริการ Smart Home ครบวงจร<br/>
+    <span data-th="SMH by Ikkyu · บริการ Smart Home ครบวงจร" data-en="SMH by Ikkyu · Complete Smart Home Service">SMH by Ikkyu · บริการ Smart Home ครบวงจร</span><br/>
     <a href="https://lin.ee/9AcwOJj">Line: @255cozlc</a> · <a href="tel:0924501138">092-450-1138</a><br/>
-    รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ
+    <span data-th="รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ" data-en="Installation + 1-Year Warranty on all items">รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ</span>
   </footer>
 
+<script>
+function applyDataAttrs(lang) {
+  document.querySelectorAll('[data-th][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+}
+let currentLang = 'th';
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('langTH').classList.toggle('active', lang === 'th');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  applyDataAttrs(lang);
+}
+function toggleLang() { setLang(currentLang === 'th' ? 'en' : 'th'); }
+</script>
 </body>
 </html>
