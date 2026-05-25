@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart IR Remote · รีโมทอัจฉริยะ · SMH by Ikkyu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f4f8fd;
+      --surface2: #eaf3fc;
+      --border: rgba(55,181,255,0.2);
+      --blue: #37b5ff;
+      --blue-light: #0090e0;
+      --blue-dim: rgba(55,181,255,0.1);
+      --text: #0f1f33;
+      --text-dim: #5a7a99;
+      --accent: #37b5ff;
+      --green: #16a34a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sarabun', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .topbar-back:hover { color: var(--blue); }
+    .topbar-back svg { width: 18px; height: 18px; }
+    .topbar-brand {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: .04em;
+    }
+    .topbar-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #00b900;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .topbar-line:hover { opacity: .85; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 48px 24px 36px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .badge-cat  { background: var(--blue-dim); color: var(--blue-light); border: 1px solid var(--blue); }
+    .badge-type { background: rgba(55,181,255,.1); color: var(--blue); border: 1px solid rgba(55,181,255,.3); }
+    .badge-hot  { background: rgba(255,100,50,.1); color: #e05000; border: 1px solid rgba(255,100,50,.3); }
+
+    .hero h1 {
+      font-family: 'Kanit', sans-serif;
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* price block */
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .price-main {
+      font-family: 'Kanit', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .price-label {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    .price-label strong { display: block; color: var(--text); font-weight: 500; }
+
+    /* free badge */
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22,163,74,.1);
+      border: 1px solid rgba(22,163,74,.3);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #00b900;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(0,185,0,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,185,0,.4); }
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .video-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(55,181,255,.2);
+      background: #000;
+    }
+    .video-wrapper::before {
+      content: '';
+      display: block;
+      padding-top: 177.78%; /* 9:16 */
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-caption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+
+    /* ── FEATURES ── */
+    .features-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 400px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    .feat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border-color .2s, transform .2s;
+    }
+    .feat-card:hover { border-color: rgba(55,181,255,.4); transform: translateY(-2px); }
+    .feat-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+    .feat-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .feat-text span { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+
+    /* ── WHAT CAN DO ── */
+    .usecases-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .usecase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .usecase-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+    }
+    .usecase-item .cmd {
+      font-family: 'Kanit', sans-serif;
+      color: var(--blue-light);
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .usecase-item .desc {
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* ── SPECS ── */
+    .specs-section {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .specs-table {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .spec-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      width: 44%;
+      padding: 14px 16px;
+      color: var(--text-dim);
+      font-weight: 500;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .spec-val {
+      padding: 14px 16px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* ── GUARANTEE BAR ── */
+    .guarantee-bar {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .guarantee-inner {
+      background: var(--blue-dim);
+      border: 1px solid rgba(55,181,255,.3);
+      border-radius: 16px;
+      padding: 20px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .guarantee-icon { font-size: 32px; }
+    .guarantee-text strong { display: block; font-family: 'Kanit', sans-serif; font-size: 16px; color: var(--blue-light); }
+    .guarantee-text span { font-size: 13px; color: var(--text-dim); }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .bottom-cta p { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; }
+    .btn-line-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #00b900;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-family: 'Kanit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 32px rgba(0,185,0,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-line-big:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,185,0,.45); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0 24px 48px; max-width: calc(680px - 48px); margin-left: auto; margin-right: auto; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      flex-shrink: 0;
+      font-family: 'Kanit', sans-serif;
+      font-size: 11px; font-weight: 500;
+      display: flex; align-items: center;
+      background: rgba(244,248,253,0.9);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      gap: 0;
+    }
+    .lang-toggle span {
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      color: var(--text-dim);
+      user-select: none;
+    }
+    .lang-toggle span.active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    /* ── COMPAT CHIPS ── */
+    .compat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .compat-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <a class="topbar-back" href="https://rungrotsukanta.github.io/smhbyikkyu/#control" data-th="กลับหน้าหลัก" data-en="Back">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      กลับหน้าหลัก
+    </a>
+    <span class="topbar-brand">SMH by Ikkyu</span>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="lang-toggle" onclick="toggleLang()">
+        <span id="langTH" class="active">TH</span>
+        <span id="langEN">EN</span>
+      </div>
+      <a class="topbar-line" href="https://lin.ee/9AcwOJj" target="_blank" rel="noopener">
+        💬 Line
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge-row">
+      <span class="badge badge-cat" data-th="ควบคุมไฟฟ้า" data-en="Appliance Control">ควบคุมไฟฟ้า</span>
+      <span class="badge badge-type">IR Remote</span>
+      <span class="badge badge-hot" data-th="⭐ ใช้งานง่าย" data-en="⭐ Easy to Use">⭐ ใช้งานง่าย</span>
+    </div>
+    <h1>Smart IR Remote<br/><span data-th="รีโมทอัจฉริยะ" data-en="Smart Remote Control">รีโมทอัจฉริยะ</span></h1>
+    <p class="hero-sub" data-th="แทนรีโมทเดิมทุกตัวในบ้านด้วยอุปกรณ์ชิ้นเดียว&lt;br/&gt;แอร์ ทีวี เครื่องใช้ไฟฟ้าทุกชนิด · รวมติดตั้ง + ประกัน 1 ปี" data-en="Replace every remote in your home with one device&lt;br/&gt;AC, TV, and all appliances · Includes installation + 1-Year Warranty">
+      แทนรีโมทเดิมทุกตัวในบ้านด้วยอุปกรณ์ชิ้นเดียว<br/>
+      แอร์ ทีวี เครื่องใช้ไฟฟ้าทุกชนิด · รวมติดตั้ง + ประกัน 1 ปี
+    </p>
+
+    <div class="free-badge" data-th="✅ เรียนค่าจากรีโมทเดิมได้ทันที" data-en="✅ Learns from your existing remote instantly">
+      ✅ เรียนค่าจากรีโมทเดิมได้ทันที
+    </div>
+
+    <div class="price-block">
+      <span class="price-main">฿699</span>
+      <div class="price-label">
+        <strong data-th="รวมติดตั้ง" data-en="Installation Included">รวมติดตั้ง</strong>
+        <span data-th="ประกัน 1 ปี ทุกรายการ" data-en="1-Year Warranty on all items">ประกัน 1 ปี ทุกรายการ</span>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://lin.ee/9AcwOJj?text=%E0%B8%AA%E0%B8%99%E0%B9%83%E0%B8%88%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%3A%20Smart%20IR%20Remote%20%E0%B8%A3%E0%B8%B5%E0%B9%82%E0%B8%A1%E0%B8%97%E0%B8%AD%E0%B8%B1%E0%B8%88%E0%B8%89%E0%B8%A3%E0%B8%B4%E0%B8%A2%E0%B8%B0%20%E0%B8%BF899.-" target="_blank" rel="noopener" data-th="💬 สอบถาม Line" data-en="💬 Line Chat">
+        💬 สอบถาม Line
+      </a>
+      <a class="btn-secondary" href="tel:0924501138">
+        📞 092-450-1138
+      </a>
+
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <p class="section-label" data-th="ดูการใช้งานจริง" data-en="See It In Action">ดูการใช้งานจริง</p>
+    <h2 class="video-title" data-th="วิดีโอการใช้งาน" data-en="Demo Video">วิดีโอการใช้งาน</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/RTEbVbIh0Ag"
+        title="Smart IR Remote - SMH by Ikkyu"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="video-caption" data-th="กดเพื่อดูวิดีโอสาธิต · Smart IR Remote ควบคุมแอร์และเครื่องใช้ไฟฟ้า" data-en="Tap to watch the demo · Smart IR Remote controlling AC and appliances">กดเพื่อดูวิดีโอสาธิต · Smart IR Remote ควบคุมแอร์และเครื่องใช้ไฟฟ้า</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <p class="section-label" data-th="คุณสมบัติ" data-en="Features">คุณสมบัติ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ฟีเจอร์ครบ ใช้งานง่าย" data-en="Full Features, Easy to Use">ฟีเจอร์ครบ ใช้งานง่าย</h2>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">📡</div>
+        <div class="feat-text">
+          <strong data-th="เรียนค่ารีโมทเดิม" data-en="Learn Existing Remotes">เรียนค่ารีโมทเดิม</strong>
+          <span data-th="รีโมทตัวไหนก็ได้ สอนได้ทันทีไม่ต้องตั้งค่ายุ่งยาก" data-en="Any remote works — teach it instantly, no complex setup">รีโมทตัวไหนก็ได้ สอนได้ทันทีไม่ต้องตั้งค่ายุ่งยาก</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div class="feat-text">
+          <strong data-th="สั่งผ่านแอป" data-en="App Control">สั่งผ่านแอป</strong>
+          <span data-th="ควบคุมเครื่องใช้ไฟฟ้าจากมือถือได้ทุกที่ทุกเวลา" data-en="Control appliances from your phone anywhere, anytime">ควบคุมเครื่องใช้ไฟฟ้าจากมือถือได้ทุกที่ทุกเวลา</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🗣️</div>
+        <div class="feat-text">
+          <strong data-th="สั่งด้วยเสียง" data-en="Voice Control">สั่งด้วยเสียง</strong>
+          <span data-th="ใช้ร่วมกับ Alexa / Google Home สั่งแอร์-ทีวีด้วยเสียงได้เลย" data-en="Works with Alexa / Google Home to voice-control AC and TV">ใช้ร่วมกับ Alexa / Google Home สั่งแอร์-ทีวีด้วยเสียงได้เลย</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⏱️</div>
+        <div class="feat-text">
+          <strong data-th="ตั้งเวลาอัตโนมัติ" data-en="Auto Schedule">ตั้งเวลาอัตโนมัติ</strong>
+          <span data-th="ตั้งเปิด-ปิดแอร์ หรืออุปกรณ์อื่นล่วงหน้าได้เลย" data-en="Schedule AC or any device to turn on/off automatically">ตั้งเปิด-ปิดแอร์ หรืออุปกรณ์อื่นล่วงหน้าได้เลย</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🤖</div>
+        <div class="feat-text">
+          <strong data-th="Automation เชื่อมระบบ" data-en="System Automation">Automation เชื่อมระบบ</strong>
+          <span data-th="เปิดแอร์อัตโนมัติเมื่อกลับบ้าน หรือปิดเมื่อออกจากบ้าน" data-en="Auto-on when you arrive home, auto-off when you leave">เปิดแอร์อัตโนมัติเมื่อกลับบ้าน หรือปิดเมื่อออกจากบ้าน</span>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📦</div>
+        <div class="feat-text">
+          <strong data-th="ขนาดเล็ก ติดตั้งง่าย" data-en="Compact & Easy Install">ขนาดเล็ก ติดตั้งง่าย</strong>
+          <span data-th="ขนาด R6.8 × 2 ซม. ติดตั้งได้ทุกห้อง ใช้งานได้ทันที" data-en="R6.8 × 2 cm — fits any room, ready to use right away">ขนาด R6.8 × 2 ซม. ติดตั้งได้ทุกห้อง ใช้งานได้ทันที</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- USE CASES -->
+  <section class="usecases-section">
+    <p class="section-label" data-th="ตัวอย่างการใช้งาน" data-en="Example Use Cases">ตัวอย่างการใช้งาน</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="ควบคุมอะไรได้บ้าง?" data-en="What Can You Control?">ควบคุมอะไรได้บ้าง?</h2>
+    <div class="usecase-list">
+      <div class="usecase-item">
+        <span class="cmd">❄️ <span data-th="แอร์" data-en="AC">แอร์</span></span>
+        <span class="desc" data-th="เปิด-ปิด ปรับอุณหภูมิ ตั้งเวลา หรือสั่งผ่านเสียง Alexa ได้เลย" data-en="On/off, temperature, schedule, or voice-control via Alexa">เปิด-ปิด ปรับอุณหภูมิ ตั้งเวลา หรือสั่งผ่านเสียง Alexa ได้เลย</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">📺 TV</span>
+        <span class="desc" data-th="เปิด-ปิด ปรับช่อง ปรับเสียง ผ่านแอปหรือเสียง" data-en="On/off, change channels, volume — via app or voice">เปิด-ปิด ปรับช่อง ปรับเสียง ผ่านแอปหรือเสียง</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">💡 <span data-th="พัดลม / ไฟ" data-en="Fan / Light">พัดลม / ไฟ</span></span>
+        <span class="desc" data-th="อุปกรณ์ที่มีรีโมท IR ทุกชนิด รองรับหมด" data-en="Any appliance with an IR remote is supported">อุปกรณ์ที่มีรีโมท IR ทุกชนิด รองรับหมด</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🏠 <span data-th="Automation" data-en="Automation">Automation</span></span>
+        <span class="desc" data-th="เปิดแอร์อัตโนมัติ 30 นาทีก่อนกลับถึงบ้าน ตั้งได้เลย" data-en="Auto-start AC 30 min before you get home — easy to set up">เปิดแอร์อัตโนมัติ 30 นาทีก่อนกลับถึงบ้าน ตั้งได้เลย</span>
+      </div>
+      <div class="usecase-item">
+        <span class="cmd">🗣️ Alexa</span>
+        <span class="desc" data-th='"Alexa, เปิดแอร์" · สั่งได้ทันทีเมื่อใช้คู่กับ Alexa Echo Dot' data-en='"Alexa, turn on the AC" — works instantly with Alexa Echo Dot'>"Alexa, เปิดแอร์" · สั่งได้ทันทีเมื่อใช้คู่กับ Alexa Echo Dot</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPAT -->
+  <section class="features-section">
+    <p class="section-label" data-th="รองรับอุปกรณ์" data-en="Compatible Appliances">รองรับอุปกรณ์</p>
+    <h2 class="video-title" style="margin-bottom:12px;" data-th="ใช้งานร่วมกับอะไรได้บ้าง?" data-en="Works With Any of These">ใช้งานร่วมกับอะไรได้บ้าง?</h2>
+    <p style="font-size:14px; color:var(--text-dim); margin-bottom:16px;" data-th="อุปกรณ์ที่ใช้คลื่น IR ทุกชนิด รองรับทั้งหมด" data-en="Any device that uses IR signals is fully supported">อุปกรณ์ที่ใช้คลื่น IR ทุกชนิด รองรับทั้งหมด</p>
+    <div class="compat-row">
+      <span class="compat-chip">❄️ <span data-th="แอร์ทุกยี่ห้อ" data-en="All AC Brands">แอร์ทุกยี่ห้อ</span></span>
+      <span class="compat-chip">📺 <span data-th="ทีวี" data-en="TV">ทีวี</span></span>
+      <span class="compat-chip">🌀 <span data-th="พัดลม" data-en="Fan">พัดลม</span></span>
+      <span class="compat-chip">📻 <span data-th="วิทยุ / เครื่องเสียง" data-en="Radio / Speaker">วิทยุ / เครื่องเสียง</span></span>
+      <span class="compat-chip">💡 <span data-th="ไฟ IR" data-en="IR Lights">ไฟ IR</span></span>
+      <span class="compat-chip">🎮 <span data-th="กล่องรับสัญญาณ" data-en="Set-top Box">กล่องรับสัญญาณ</span></span>
+      <span class="compat-chip">📽️ <span data-th="โปรเจกเตอร์" data-en="Projector">โปรเจกเตอร์</span></span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SPECS -->
+  <section class="specs-section">
+    <p class="section-label" data-th="ข้อมูลจำเพาะ" data-en="Specifications">ข้อมูลจำเพาะ</p>
+    <h2 class="video-title" style="margin-bottom:20px;" data-th="รายละเอียดสินค้า" data-en="Product Details">รายละเอียดสินค้า</h2>
+    <div class="specs-table">
+      <div class="spec-row">
+        <div class="spec-key" data-th="รุ่น" data-en="Model">รุ่น</div>
+        <div class="spec-val">Smart IR Remote Hub</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="ขนาด" data-en="Size">ขนาด</div>
+        <div class="spec-val">R6.8 × 2 cm</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="การเชื่อมต่อ" data-en="Connectivity">การเชื่อมต่อ</div>
+        <div class="spec-val">Wi-Fi 2.4GHz</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="การสั่งงาน" data-en="Control">การสั่งงาน</div>
+        <div class="spec-val" data-th="แอปพลิเคชัน / เสียง (Alexa, Google Home)" data-en="App / Voice (Alexa, Google Home)">แอปพลิเคชัน / เสียง (Alexa, Google Home)</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="ระยะส่งสัญญาณ" data-en="IR Range">ระยะส่งสัญญาณ</div>
+        <div class="spec-val" data-th="รัศมี 360° สูงสุด 8 เมตร" data-en="360° radius, up to 8 metres">รัศมี 360° สูงสุด 8 เมตร</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="รองรับอุปกรณ์" data-en="Compatible With">รองรับอุปกรณ์</div>
+        <div class="spec-val" data-th="แอร์ ทีวี พัดลม กล่องดิจิทัล โปรเจกเตอร์ และอื่นๆ" data-en="AC, TV, Fan, Set-top Box, Projector & more">แอร์ ทีวี พัดลม กล่องดิจิทัล โปรเจกเตอร์ และอื่นๆ</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="โบนัส" data-en="Bonus">โบนัส</div>
+        <div class="spec-val" data-th="เรียนค่าจากรีโมทเดิมได้ทันที ไม่ต้องตั้งค่าเพิ่ม" data-en="Learns from existing remote instantly — no extra setup">เรียนค่าจากรีโมทเดิมได้ทันที ไม่ต้องตั้งค่าเพิ่ม</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="ประกัน" data-en="Warranty">ประกัน</div>
+        <div class="spec-val" data-th="1 ปี รวมค่าบริการ" data-en="1 Year incl. service">1 ปี รวมค่าบริการ</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key" data-th="ราคา" data-en="Price">ราคา</div>
+        <div class="spec-val"><strong style="color:var(--blue)">฿699</strong> <span data-th="รวมติดตั้ง" data-en="incl. installation">รวมติดตั้ง</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee-bar">
+    <div class="guarantee-inner">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <strong data-th="รวมติดตั้ง + ประกัน 1 ปีทุกรายการ" data-en="Installation + 1-Year Warranty on All Items">รวมติดตั้ง + ประกัน 1 ปีทุกรายการ</strong>
+        <span data-th="ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ" data-en="Professional team · 24/7 after-sales support · Customizable to your needs">ทีมช่างมืออาชีพ · บริการหลังการขาย 24/7 · ปรับเพิ่ม-ลดรายการได้ตามต้องการ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2 data-th="สนใจ? สอบถามได้เลยครับ" data-en="Interested? Ask Us Anytime">สนใจ? สอบถามได้เลยครับ</h2>
+    <p data-th="ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน" data-en="Customizable to your needs · Fast reply every day">ปรับเพิ่ม-ลดรายการได้ตามความต้องการ · ตอบไวทุกวัน</p>
+    <a class="btn-line-big" href="https://lin.ee/9AcwOJj" target="_blank" rel="noopener">
+      💬 Line: @SMHbyIkkyu
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span data-th="SMH by Ikkyu · บริการ Smart Home ครบวงจร" data-en="SMH by Ikkyu · Complete Smart Home Service">SMH by Ikkyu · บริการ Smart Home ครบวงจร</span><br/>
+    <a href="https://lin.ee/9AcwOJj">Line: @SMHbyIkkyu</a> · <a href="tel:0924501138">092-450-1138</a><br/>
+    <span data-th="รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ" data-en="Installation + 1-Year Warranty on all items">รวมค่าติดตั้ง + ประกัน 1 ปี ทุกรายการ</span>
+  </footer>
+
+<script>
+function applyDataAttrs(lang) {
+  document.querySelectorAll('[data-th][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+}
+
+let currentLang = 'th';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'th' ? 'th' : 'en';
+  document.getElementById('langTH').classList.toggle('active', lang === 'th');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  applyDataAttrs(lang);
+}
+
+function toggleLang() {
+  setLang(currentLang === 'th' ? 'en' : 'th');
+}
+</script>
+</body>
+</html>
